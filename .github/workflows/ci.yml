@@ -1,6 +1,5 @@
 
 name: Container Build
-
 on:
   push:
     paths:
@@ -52,4 +51,5 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: context/
+        push: true
         labels: ${{ steps.meta.outputs.labels }}
