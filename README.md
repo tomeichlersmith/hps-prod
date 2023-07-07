@@ -33,12 +33,16 @@ if you desire.
 ```cfg
 [Job]
 enable_copy_input_files = False
+enable_copy_output_files = False
 ```
 #### job.json
 ```json
 {
-  input_files : {
-    "input_file.ext" : "input_file.ext" 
+  "input_files" : {
+    "input_full_name.ext" : "input.ext" 
+  },
+  "output_files": {
+    "output.ext" : "output_full_name.ext"
   }
 }
 ```
@@ -53,12 +57,13 @@ apptainer \
   run \
   --home $PWD \
   --bind /path/to/jobs.json \
+  --bind /path/to/job.cfg \
   /path/to/image.sif \
   hps-mc-job run \
     <script>
     /path/to/jobs.json \ 
     -c /usr/local/share/container.cfg \
-    -c job.cfg \
+    -c /path/to/job.cfg \
     -d scratch \
     -i <job_index>
 ```
