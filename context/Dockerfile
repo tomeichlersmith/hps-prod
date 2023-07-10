@@ -4,19 +4,28 @@ MAINTAINER Tom Eichlersmith <eichl008@umn.edu>
 # need to choose and install a version of hps-java
 #   not sure what the best way to define install destination
 #   for a java project is
-RUN git clone https://github.com/JeffersonLab/hps-java ${__prefix}/hps-java &&\
-    cd ${__prefix}/hps-java &&\
+RUN mkdir ${__prefix}/hps &&\
+    git clone https://github.com/JeffersonLab/hps-java ${__prefix}/hps/java &&\
+    cd ${__prefix}/hps/java &&\
     mvn \
       -DskipTests \
-      -Dcheckstyle.skip
-ENV HPS_JAVA_BIN_JAR=${__prefix}/hps-java/distribution/target/hps-distribution-5.2-SNAPSHOT-bin.jar
+      -Dcheckstyle.skip \
+    &&\
+    cp -t ${__prefix}/hps/java/ \
+      ~/.m2/repository/org/lcsim/lcio/2.7.4-SNAPSHOT/lcio-2.7.4-SNAPSHOT-bin.jar
+ENV HPS_JAVA_BIN_JAR=${__prefix}/hps/java/distribution/target/hps-distribution-5.2-SNAPSHOT-bin.jar
+
+# download and unpack fieldmaps
+#   destination is chosen to be what is expected from hps-mc defaults
+RUN git clone https://github.com/JeffersonLab/hps-fieldmaps ${__prefix}/share/fieldmap &&\
+    cd ${__prefix}/share/fieldmap &&\
+    ./unzip.sh
 
 # install hps-mc for its recipes
-#   use its CMake to copy in MadGraph and Fieldmaps
+#   use its CMake to copy in MadGraph
 #   as well as build stdhep utility programs
 RUN git clone https://github.com/JeffersonLab/hps-mc src &&\
     cmake \
-      -DHPSMC_ENABLE_FIELDMAPS=ON \
       -DHPSMC_ENABLE_STDHEP=ON \
       -DHPSMC_ENABLE_MADGRAPH=ON \
       -DCMAKE_INSTALL_PREFIX=${__prefix} \
