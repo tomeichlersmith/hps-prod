@@ -31,9 +31,21 @@ RUN git clone https://github.com/JeffersonLab/hps-mc src &&\
       -DCMAKE_INSTALL_PREFIX=${__prefix} \
       -B src/build \
       -S src &&\
-    cmake --build src/build --target install
+    cmake --build src/build --target install &&\
+    rm -rf src
 ENV PYTHONPATH=${PYTHONPATH}:${__prefix}/lib/python
 ENV HPSMC_DIR=${__prefix}
+
+# install hpstr for tuplization
+RUN git clone https://github.com/tomeichlersmith/hpstr src \
+        --branch v0.1.0 \
+        --depth 1 &&\
+    cmake \
+        -DCMAKE_INSTALL_PREFIX=${__prefix} \
+        -B src/build \
+        -S src &&\
+    cmake --build src/build --target install &&\
+    rm -rf src
 
 # copy in a hps-mc config file that users can supply when
 # running hps-mc inside this container
