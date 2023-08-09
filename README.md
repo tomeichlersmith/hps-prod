@@ -30,8 +30,7 @@ container so they don't have to be copied into the working directory
 if you desire.
 
 ## Examples
-I've gotten this _almost_ working at UMN and completely working
-at SLAC.
+I've gotten this working at UMN and SLAC.
 
 ### SLAC
 Since SDF has a distributed filesystem that we can read/write to,
@@ -95,13 +94,11 @@ we should use as our scratch area and home for the container. There
 are two additional complexities.
 
 1. HTCondor runs the job under the `nobody` user.
-2. UMN's HTCondor security settings prevents access to the network from the job
+2. We want HTCondor to handle copying input/output files
 
 (1) means we have to do some special movement of the lcsim cache directory while
-(2) makes it impossible to do anything requiring access to the HPS conditions
-database without a change to the UMN HTCondor configuration. (2) is the reason
-I abandoned batch production at UMN but I'm taking these notes in case (2) is
-resolved in the future.
+(2) means we have to have a funky hps-mc job definition so that the output files
+are where HTCondor expects them to be.
 
 #### run
 This script is what was run by HTCondor as the executable within a job.
