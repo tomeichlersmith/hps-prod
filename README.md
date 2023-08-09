@@ -131,7 +131,11 @@ cwd=$(pwd -P)
 
 mkdir ${cwd}/scratch
 printf >  ${cwd}/scratch/java-args.cfg "[JobManager]\n"
-printf >> ${cwd}/scratch/java-args.cfg "java_args = -Xmx1g -XX:+UseSerialGC -Dorg.lcsim.cacheDir=${cwd}/scratch"
+printf >> ${cwd}/scratch/java-args.cfg "java_args = -Xmx1g -XX:+UseSerialGC -Dorg.lcsim.cacheDir=${cwd}/scratch\n"
+printf >> ${cwd}/scratch/java-args.cfg "\n"
+printf >> ${cwd}/scratch/java-args.cfg "[FilterBunches]\n"
+printf >> ${cwd}/scratch/java-args.cfg "java_args = -Xmx1g -XX:+UseSerialGC -Dorg.lcsim.cacheDir=${cwd}/scratch\n"
+
 
 /usr/bin/apptainer \
   run \
