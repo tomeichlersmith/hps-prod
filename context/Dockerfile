@@ -38,7 +38,7 @@ ENV HPSMC_DIR=${__prefix}
 
 # install hpstr for tuplization
 RUN git clone https://github.com/tomeichlersmith/hpstr src \
-        --branch v0.1.0 \
+        --branch v0.1.1 \
         --depth 1 &&\
     cmake \
         -DCMAKE_INSTALL_PREFIX=${__prefix} \
