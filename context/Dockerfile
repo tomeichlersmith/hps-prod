@@ -5,7 +5,8 @@ MAINTAINER Tom Eichlersmith <eichl008@umn.edu>
 #   not sure what the best way to define install destination
 #   for a java project is
 RUN mkdir ${__prefix}/hps &&\
-    git clone https://github.com/JeffersonLab/hps-java ${__prefix}/hps/java &&\
+    git clone https://github.com/JeffersonLab/hps-java ${__prefix}/hps/java \
+        --branch hps-java-5.2.0 &&\
     cd ${__prefix}/hps/java &&\
     mvn \
       -DskipTests \
