@@ -13,8 +13,9 @@ RUN mkdir ${__prefix}/hps &&\
       -Dcheckstyle.skip \
     &&\
     cp -t ${__prefix}/hps/java/ \
-      ~/.m2/repository/org/lcsim/lcio/2.7.4-SNAPSHOT/lcio-2.7.4-SNAPSHOT-bin.jar
-ENV HPS_JAVA_BIN_JAR=${__prefix}/hps/java/distribution/target/hps-distribution-5.2-SNAPSHOT-bin.jar
+      ~/.m2/repository/org/lcsim/lcio/2.7.4-SNAPSHOT/lcio-2.7.4-SNAPSHOT-bin.jar &&\
+    find distribution/target -type f -name '*-bin.jar'
+ENV HPS_JAVA_BIN_JAR=${__prefix}/hps/java/distribution/target/hps-distribution-5.2.0-bin.jar
 
 # download and unpack fieldmaps
 #   destination is chosen to be what is expected from hps-mc defaults
