@@ -27,7 +27,7 @@ RUN git clone https://github.com/JeffersonLab/hps-fieldmaps ${__prefix}/share/fi
 #   use its CMake to copy in MadGraph
 #   as well as build stdhep utility programs
 RUN git clone https://github.com/JeffersonLab/hps-mc src \
-        --branch idm-other-years &&\
+        --branch introduce-simp-3body &&\
     cmake \
       -DHPSMC_ENABLE_STDHEP=ON \
       -DHPSMC_ENABLE_MADGRAPH=ON \
