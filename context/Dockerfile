@@ -1,4 +1,4 @@
-FROM tomeichlersmith/hps-env:v3.3.0
+FROM tomeichlersmith/hps-env:v3.3.1
 MAINTAINER Tom Eichlersmith <eichl008@umn.edu>
 
 # need to choose and install a version of hps-java
@@ -6,7 +6,7 @@ MAINTAINER Tom Eichlersmith <eichl008@umn.edu>
 #   for a java project is
 RUN mkdir ${__prefix}/hps &&\
     git clone https://github.com/JeffersonLab/hps-java ${__prefix}/hps/java \
-        --branch hps-java-5.2.0 &&\
+        --branch hps-java-5.2.1 &&\
     cd ${__prefix}/hps/java &&\
     mvn \
       -DskipTests \
