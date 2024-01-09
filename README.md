@@ -1,3 +1,9 @@
+# ⚠️ Deprecated
+These packages have been moved into hps-env. This was decided because which packages
+are being developed changes depending on the project and users can use the environment
+variables with their denv to choose their custom local installations of packages rather
+than the default system installations.
+
 # hps-prod
 Containerized HPS production.
 
